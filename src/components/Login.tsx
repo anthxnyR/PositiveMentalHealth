@@ -1,15 +1,16 @@
 import React, { useState, ChangeEvent, FormEvent } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './styles/Login.css';
+import axios from '../config/axiosConfig';
 
 const LoginPage = () => {
   const navigate = useNavigate();
-  const [username, setUsername] = useState('');
+  const [Email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
 
-  const handleUsernameChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setUsername(event.target.value);
+  const handleEmailChange = (event: ChangeEvent<HTMLInputElement>) => {
+    setEmail(event.target.value);
   };
 
   const handlePasswordChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -19,15 +20,22 @@ const LoginPage = () => {
   const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
-    // Verificar las credenciales
-    if (username === 'usuario' && password === 'contraseña') {
-      // Credenciales válidas, realizar la acción deseada (por ejemplo, redirigir a la página principal)
-      console.log('Inicio de sesión exitoso');
-      navigate('/MainMenu');
-    } else {
-      // Credenciales inválidas, mostrar mensaje de error
+    axios.post('/api/auth/login',{
+      email : Email,
+      password : password
+    }).then((response) => {
+      console.log(response.data);
+      if (response.status === 409) {
+        setErrorMessage('Credenciales inválidas. Por favor, inténtalo nuevamente.');
+      } else if (response.status === 200) {
+        console.log('Inicio de sesión exitoso');
+        navigate('/MainMenu');
+      }
+    } ).catch((error) => {
+      console.log(error);
       setErrorMessage('Credenciales inválidas. Por favor, inténtalo nuevamente.');
     }
+    );
   };
 
   return (
@@ -36,12 +44,12 @@ const LoginPage = () => {
       <div className="login-content">
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">Usuario:</label>
+          <label htmlFor="Email">Email:</label>
           <input
             type="text"
-            id="username"
-            value={username}
-            onChange={handleUsernameChange}
+            id="Email"
+            value={Email}
+            onChange={handleEmailChange}
           />
         </div>
         <div>
