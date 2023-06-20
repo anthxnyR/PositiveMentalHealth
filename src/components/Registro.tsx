@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import './styles/Registro.css';
 import { Button, Dialog, DialogActions, DialogContent, DialogContentText, DialogTitle } from '@material-ui/core';
 import { CheckCircleOutline } from '@material-ui/icons';
+import axios from '../config/axiosConfig';
 
 const RegistroPage: React.FC = () => {
   const [nombre, setNombre] = useState('');
@@ -45,8 +46,30 @@ const RegistroPage: React.FC = () => {
     setError('');
 
     // Aquí puedes realizar las acciones necesarias con los datos del formulario
-
-    setOpenDialog(true);
+    axios.post('/api/auth/signup',{
+      name : nombre,
+      email : email,
+      password : password,
+      gender : genero,
+      ethnicity : etnia,
+      region : region,
+      education : nivelEducativo,
+      institution : tipoInstitucion
+    }).then((response) => {
+      console.log(response.data);
+      if (response.status === 409) {
+        setError('El correo electrónico ingresado ya está registrado.');
+        console.log(error);
+        return;
+      }
+      setOpenDialog(true);
+    }
+    ).catch((error) => {
+      alert('El correo electrónico ingresado ya está registrado. Intente iniciar sesión o pruebe con otro correo electrónico.');
+      setEmail('');
+      console.log(error);
+    }
+    );
   };
 
   const handleCloseDialog = () => {
