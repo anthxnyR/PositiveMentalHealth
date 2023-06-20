@@ -3,6 +3,14 @@ import { useNavigate } from 'react-router-dom';
 import './styles/QuizAutoestima.css';
 import QuizQuestion1 from './Quiz/pregunta1';
 import QuizQuestion2 from './Quiz/pregunta2';
+import QuizQuestion3 from './Quiz/pregunta3';
+import QuizQuestion4 from './Quiz/pregunta4';
+import QuizQuestion5 from './Quiz/pregunta5';
+import QuizQuestion6 from './Quiz/pregunta6';
+import QuizQuestion7 from './Quiz/pregunta7';
+import QuizQuestion8 from './Quiz/pregunta8';
+import QuizQuestion9 from './Quiz/pregunta9';
+import QuizQuestion10 from './Quiz/pregunta10';
 
 const QuizPage: React.FC = () => {
   const navigate = useNavigate();
@@ -29,4 +37,4 @@ const QuizPage: React.FC = () => {
   );
 };
 
-export { QuizPage, QuizQuestion1, QuizQuestion2}
+export { QuizPage, QuizQuestion1, QuizQuestion2, QuizQuestion3, QuizQuestion4, QuizQuestion5, QuizQuestion6, QuizQuestion7, QuizQuestion8, QuizQuestion9, QuizQuestion10}

@@ -1,0 +1,208 @@
+/* ResultPage.css */
+
+.result-page {
+  min-height: 100vh;
+  background-color: #b2dafa;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+  text-align: center;
+}
+
+.result-page h2 {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.result-page p {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.result-indicator {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.gauge-chart {
+  position: relative;
+}
+
+.percentage {
+  position: absolute;
+  top: 73%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 2.5rem;
+  font-weight: bold;
+}
+
+.nivel {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-top: 1rem;
+}
+
+/* Estilos para el Gauge Chart */
+.gauge-chart .gauge-chart__container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+}
+
+.gauge-chart .gauge-chart__background {
+  fill: #C5E1A5; /* Fondo verde pastel */
+}
+
+.gauge-chart .gauge-chart__low {
+  fill: #FFD0D0; /* Autoestima baja */
+}
+
+.gauge-chart .gauge-chart__medium {
+  fill: #FF9C9C; /* Autoestima media */
+}
+
+.gauge-chart .gauge-chart__high {
+  fill: #FF4081; /* Autoestima alta */
+}
+
+.gauge-chart .gauge-chart__text {
+  fill: #333;
+  font-size: 1rem;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+.gauge-chart .gauge-chart__arrow {
+  fill: #333;
+  transition: transform 0.3s ease-in-out;
+}
+
+.gauge-chart .gauge-chart__arrow.high {
+  transform: rotate(180deg);
+}
+
+.gauge-chart .gauge-chart__arrow.medium {
+  transform: rotate(135deg);
+}
+
+.gauge-chart .gauge-chart__arrow.low {
+  transform: rotate(90deg);
+}
+
+.mensaje {
+  text-align: center;
+  font-size: 18px;
+  margin-top: 20px;
+}
+
+.recursos {
+  text-align: center;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+}
+
+.recursosMed {
+  text-align: center;
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.recursosMed p {
+  font-size: 16px;
+}
+
+.recursosMed ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.recursosMed ul li {
+  margin-bottom: 5px;
+}
+
+.recursos p {
+  font-size: 16px;
+}
+
+.recursos ul {
+  list-style-type: none;
+  padding: 0;
+}
+
+.recursos ul li {
+  margin-bottom: 5px;
+}
+
+.message-container {
+  background-color: #d7f0d9;
+  border-radius: 5px;
+  padding: 20px;
+  margin-top: 20px;
+  max-width: 600px;
+  text-align: center;
+  color: #fff;
+}
+
+.btn-ayuda {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #fff;
+  color: #FF4081;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.btn-ayuda:hover {
+  background-color: #FF66A2;
+}
+
+.btn-ayuda:focus {
+  outline: none;
+}
+
+.recursos .resource-card {
+  width: 200px;
+  background-color: #FF4081;
+  border-radius: 5px;
+  margin-right: 10px;
+  padding: 10px;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.recursos .resource-card img {
+  width: 100%;
+  border-radius: 5px;
+  margin-bottom: 10px;
+  object-fit: contain;
+}
+
+.recursos .resource-card p {
+  font-size: 14px;
+  color: #fff;
+  margin: 0;
+}
+
+.recursos .resource-card a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.recursos .resource-card a:hover {
+  text-decoration: underline;
+}

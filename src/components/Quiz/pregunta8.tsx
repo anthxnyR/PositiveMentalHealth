@@ -2,10 +2,9 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/QuizAutoestima.css';
 
-const QuizQuestion1: React.FC = () => {
+const QuizQuestion8: React.FC = () => {
   const navigate = useNavigate();
   const [selectedValue, setSelectedValue] = useState('');
-  localStorage.setItem('totalPoints', '0');
 
   const handleNextQuestion = () => {
     // Aquí puedes agregar lógica adicional para manejar la respuesta antes de pasar a la siguiente pregunta
@@ -13,8 +12,10 @@ const QuizQuestion1: React.FC = () => {
       alert('Por favor selecciona una respuesta');
       return;
     }
-    localStorage.setItem('totalPoints', selectedValue.toString());
-    navigate('/QuizAutoestima/pregunta2');
+    const storedValue = localStorage.getItem('totalPoints');
+    const totalPoints = storedValue ? parseInt(storedValue) + parseInt(selectedValue) : parseInt(selectedValue);
+    localStorage.setItem('totalPoints', totalPoints.toString());
+    navigate('/QuizAutoestima/pregunta9');
   };
 
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -24,9 +25,9 @@ const QuizQuestion1: React.FC = () => {
   return (
     <div className="quiz-page">
       <div className="quiz-content">
-        <h2>Pregunta 1</h2>
+        <h2>Pregunta 8</h2>
         <p>
-          Siento que soy una persona digna de aprecio, al menos en igual medida que los demás.
+            Desearía valorarme más a mí mismo/a.
         </p>
         <div className="likert-scale">
         <label>
@@ -58,4 +59,4 @@ const QuizQuestion1: React.FC = () => {
   );
 };
 
-export default QuizQuestion1;
+export default QuizQuestion8;
