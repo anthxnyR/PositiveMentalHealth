@@ -19,7 +19,7 @@ const LandingPage: React.FC = () => {
         </div>
         <br></br>
         <div className="cta-buttons">
-          <button className="cta-button">Inicio de sesión</button>
+          <Link to="/Login" className="cta-button register-button">Inicio de Sesion</Link>
           <Link to="/registro" className="cta-button register-button">Registro</Link>
         </div>
       </div>

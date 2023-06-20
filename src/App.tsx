@@ -4,6 +4,7 @@ import LandingPage from './components/LandingPage.tsx';
 import RegistroPage from './components/Registro.tsx';
 import {QuizPage, QuizQuestion1, QuizQuestion2, QuizQuestion3, QuizQuestion4, QuizQuestion5, QuizQuestion6, QuizQuestion7, QuizQuestion8, QuizQuestion9, QuizQuestion10} from './components/QuizAutoestima.tsx';
 import Result from './components/ResultPage.tsx';
+import Login from './components/Login.tsx';
 
 
 const App: React.FC = () => {
@@ -24,6 +25,8 @@ const App: React.FC = () => {
         <Route path ="/QuizAutoestima/pregunta9" element={<QuizQuestion9/>} />
         <Route path ="/QuizAutoestima/pregunta10" element={<QuizQuestion10/>} />
         <Route path="/ResultPage" element={<Result />} />
+        <Route path="/Login" element={<Login />} />
+
 
       </Routes>
     </Router>
