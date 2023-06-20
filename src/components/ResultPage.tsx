@@ -5,9 +5,18 @@ import esaEs from './images/boton_esaes.png';
 import dece from './images/dece.png';
 import cpsa from './images/cpsa.jpg';
 import GoToMenuButton from './MenuButton';
+import axios from '../config/axiosConfig';
 
 const ResultPage: React.FC = () => {
-  const puntaje = 30
+
+  const [puntaje, setPuntaje] = React.useState<number>(0);
+
+  const id = localStorage.getItem('testId');
+  axios.get(`/api/test/${id}`).then((response) => {
+    setPuntaje(response.data.test.score)
+  }).catch((error) => {
+    console.log(error);
+  });
   let resultado = '';
   let porcentaje = 0;
   let nivel = 0;

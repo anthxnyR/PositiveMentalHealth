@@ -29,6 +29,7 @@ const LoginPage = () => {
         setErrorMessage('Credenciales inválidas. Por favor, inténtalo nuevamente.');
       } else if (response.status === 200) {
         console.log('Inicio de sesión exitoso');
+        localStorage.setItem('email', Email);
         navigate('/MainMenu');
       }
     } ).catch((error) => {

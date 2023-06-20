@@ -11,13 +11,25 @@ import QuizQuestion7 from './Quiz/pregunta7';
 import QuizQuestion8 from './Quiz/pregunta8';
 import QuizQuestion9 from './Quiz/pregunta9';
 import QuizQuestion10 from './Quiz/pregunta10';
+import axios from '../config/axiosConfig';
 
 const QuizPage: React.FC = () => {
   const navigate = useNavigate();
 
   const handleStartQuiz = () => {
+    axios.post('/api/test', {
+      email : localStorage.getItem('email'),
+    })
+    .then((response) => {
+      console.log(response.data);
+      localStorage.setItem('testId', response.data.test._id);
+      navigate('/QuizAutoestima/pregunta1');
+    })
+    .catch((error) => {
+      console.log(error);
+    });
+
     // Aquí puedes agregar lógica adicional antes de redirigir a la primera pregunta del quiz
-    navigate('/QuizAutoestima/pregunta1');
   };
 
   return (
