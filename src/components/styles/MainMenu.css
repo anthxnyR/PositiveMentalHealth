@@ -1,0 +1,47 @@
+.main-menu {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-image: url('../images/menuBackground.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .menu {
+    max-width: 600px;
+    background-color: #ffffff;
+    padding: 60px;
+    border-radius: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  h1 {
+    color: #148f77;
+    margin-bottom: 20px;
+  }
+  
+  .MenuButtons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+  }
+  
+  .MenuButtons button {
+    background-color: #148f77;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
+  }
+  
+  .MenuButtons button:hover {
+    background-color: #117e66;
+  }
+  

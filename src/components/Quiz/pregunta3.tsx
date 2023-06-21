@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../styles/QuizAutoestima.css';
+import axios from '../../config/axiosConfig';
 
 const QuizQuestion3: React.FC = () => {
   const navigate = useNavigate();
@@ -12,10 +13,21 @@ const QuizQuestion3: React.FC = () => {
       alert('Por favor selecciona una respuesta');
       return;
     }
-    const storedValue = localStorage.getItem('totalPoints');
-    const totalPoints = storedValue ? parseInt(storedValue) + parseInt(selectedValue) : parseInt(selectedValue);
-    localStorage.setItem('totalPoints', totalPoints.toString());
-    navigate('/QuizAutoestima/pregunta4');
+    const id = localStorage.getItem('testId');
+    const number = parseFloat(selectedValue.toString());
+    console.log(number);
+    axios.put(`/api/test/${id}`, {
+      score : selectedValue,
+    })
+    .then((response) => {
+      console.log(response.data);
+      localStorage.setItem('totalPoints', selectedValue.toString());
+      navigate('/QuizAutoestima/pregunta4');
+    })
+    .catch((error) => {
+      console.log(error);
+    }
+      )
   };
 
   const handleValueChange = (e: React.ChangeEvent<HTMLInputElement>) => {
