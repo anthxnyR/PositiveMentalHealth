@@ -54,8 +54,7 @@ const RegistroPage: React.FC = () => {
       ethnicity : etnia,
       region : region,
       education : nivelEducativo,
-      institution : tipoInstitucion,
-      role: "U"
+      institution : tipoInstitucion
     }).then((response) => {
       console.log(response.data);
       if (response.status === 409) {
