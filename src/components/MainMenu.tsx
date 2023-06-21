@@ -10,8 +10,7 @@ const MainMenu: React.FC = () => {
 
     const email = localStorage.getItem('email');
     axios.get(`api/Users/${email}`).then((response) => {
-        //setUserType(response.data.body.role);
-        setUserType("U");
+        setUserType(response.data.body.role);
         console.log(userType);
     }
     ).catch((error) => {
@@ -23,8 +22,24 @@ const MainMenu: React.FC = () => {
         navigate('/QuizAutoestima');
     };
 
+    const handleDiario = () => {
+        navigate('/Diario');
+    };
+
     const handleHistory = () => {
         navigate('/UserHistoryPage');
+    };
+
+    const handlePacientes = () => {
+        navigate('/Ayudas');
+    };
+
+    const handleUsuarios = () => {
+        navigate('/Usuarios');
+    };
+
+    const handleGestionar = () => {
+        navigate('/GestionarPsicologos');
     };
 
   const renderUserOptions = () => {
@@ -32,16 +47,16 @@ const MainMenu: React.FC = () => {
       return (
         <div className='MenuButtons'>
           <button onClick={handleNewTestClick}>Realizar test otra vez</button>
-          <button>Diario</button>
+          <button onClick={handleDiario}>Diario</button>
           <button onClick={handleHistory}>Historial de test</button>
         </div>
       );
     } else if (userType === 'P' || userType === 'A') {
       return (
         <div className='MenuButtons'>
-          <button>Ver pacientes</button>
-          <button>Ver historial de test</button>
-          {userType === 'A' && <button>Gestionar Psicólogo</button>}
+          <button onClick={handlePacientes}>Ver pacientes</button>
+          <button onClick={handleUsuarios}>Ver historial de test</button>
+          {userType === 'A' && <button onClick={handleGestionar}>Gestionar Psicólogo</button>}
         </div>
       );
     } else {

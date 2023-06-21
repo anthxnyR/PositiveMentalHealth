@@ -1,0 +1,60 @@
+.container {
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    padding: 20px;
+  }
+  
+  h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  .patient-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+  }
+  
+  .patient-item {
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .patient-item:hover {
+    background-color: #e0e0e0;
+  }
+  
+  .patient-item.selected {
+    background-color: #c5cae9;
+  }
+  
+  .patient-details {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f5f5f5;
+    border-radius: 10px;
+  }
+  
+  .patient-details h2 {
+    font-size: 20px;
+    margin-bottom: 10px;
+  }
+  
+  .patient-details p {
+    margin: 5px 0;
+  }
+
+  .botonMenuAyudas{
+    margin-top: 20px;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  

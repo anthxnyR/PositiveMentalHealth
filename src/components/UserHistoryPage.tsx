@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from 'react';
 import axios from '../config/axiosConfig.js';
 import { Chart, registerables } from 'chart.js';
 import './styles/UserHistoryPage.css'
+import { useNavigate } from 'react-router-dom';
 
 // Registrar las escalas necesarias
 Chart.register(...registerables);
@@ -13,9 +14,18 @@ interface TestData {
   createdAt: Date;
 }
 
+interface UserTestResultsProps {
+  email: string;
+}
+
 const UserTestResultsPage: React.FC = () => {
   const [testData, setTestData] = useState<TestData[]>([]);
   const chartRef = useRef<Chart | null>(null);
+  const navigate = useNavigate();
+
+  const handleBackToMenu = () => {
+    navigate('/MainMenu');
+  }
 
   useEffect(() => {
     const email = localStorage.getItem('email');
@@ -82,6 +92,7 @@ const UserTestResultsPage: React.FC = () => {
       ))}
       <h2 className='chart-title'>Gráfica General</h2>
       <canvas id="generalChartCanvas" width="400" height="200"></canvas>
+      <button className="back-button" onClick={handleBackToMenu}>Volver al Menú</button>
     </div>
   );
 };

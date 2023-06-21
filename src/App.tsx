@@ -7,6 +7,10 @@ import Result from './components/ResultPage.tsx';
 import Login from './components/Login.tsx';
 import MainMenu from './components/MainMenu.tsx';
 import UserHistoryPage from './components/UserHistoryPage.tsx';
+import Diario from  './components/Diario.tsx';
+import Ayudas from './components/SolicitudAyudas.tsx';
+import Usuarios from './components/ListaUsuarios.tsx';
+import GestionarPsicologos from './components/GestionarPsicologos.tsx';
 
 const App: React.FC = () => {
   return (
@@ -30,6 +34,10 @@ const App: React.FC = () => {
         <Route path="/Login" element={<Login />} />
         <Route path="/MainMenu" element={<MainMenu />} />
         <Route path="/UserHistoryPage" element={<UserHistoryPage />} />
+        <Route path="/Diario" element={<Diario />} />
+        <Route path="/Ayudas" element={<Ayudas />} />
+        <Route path="/Usuarios" element={<Usuarios />} />
+        <Route path="/GestionarPsicologos" element={<GestionarPsicologos />} />
 
 
       </Routes>
