@@ -8,9 +8,11 @@ import Login from './components/Login.tsx';
 import MainMenu from './components/MainMenu.tsx';
 import UserHistoryPage from './components/UserHistoryPage.tsx';
 
+import Main from './components/Notas/Main.tsx';
 
 const App: React.FC = () => {
   return (
+    
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
@@ -30,6 +32,7 @@ const App: React.FC = () => {
         <Route path="/Login" element={<Login />} />
         <Route path="/MainMenu" element={<MainMenu />} />
         <Route path="/UserHistoryPage" element={<UserHistoryPage />} />
+        <Route path="/notas" element={<Main />} />
 
 
 
