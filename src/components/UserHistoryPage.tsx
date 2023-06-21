@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from 'react';
 import axios from '../config/axiosConfig.js';
 import { Chart, registerables } from 'chart.js';
+import './styles/UserHistoryPage.css'
 
 // Registrar las escalas necesarias
 Chart.register(...registerables);
@@ -73,13 +74,13 @@ const UserTestResultsPage: React.FC = () => {
   }, [testData]);
 
   return (
-    <div>
+    <div className='container'>
       <h1>Resultados de Tests</h1>
       {testData.map((test, index) => (
         <div key={index}>
         </div>
       ))}
-      <h2>Gráfica General</h2>
+      <h2 className='chart-title'>Gráfica General</h2>
       <canvas id="generalChartCanvas" width="400" height="200"></canvas>
     </div>
   );

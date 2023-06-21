@@ -97,7 +97,15 @@ const ResultPage: React.FC = () => {
         return;
       }
       submit = true;
-      alert('Gracias por pedir ayuda. Un profesional se pondrá en contacto contigo pronto.')
+      axios.post('/api/help', {
+        email: localStorage.getItem('email'),
+        selfSteemLevel: puntaje
+      }).then((response) => {
+        console.log(response);
+        alert('Gracias por pedir ayuda. Un profesional se pondrá en contacto contigo pronto.')
+      }).catch((error) => {
+        console.log(error);
+      });
     }
 
     mensajeAyuda = (
