@@ -10,8 +10,8 @@ const MainMenu: React.FC = () => {
 
     const email = localStorage.getItem('email');
     axios.get(`api/Users/${email}`).then((response) => {
-        setUserType(response.data.body.role);
-        console.log(userType);
+        //setUserType(response.data.body.role);
+        setUserType('A');
     }
     ).catch((error) => {
         console.log(error);

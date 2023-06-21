@@ -57,6 +57,7 @@ const RegistroPage: React.FC = () => {
       institution : tipoInstitucion,
       role : 'U'
     }).then((response) => {
+      localStorage.setItem('email', email);
       console.log(response.data);
       if (response.status === 409) {
         setError('El correo electrónico ingresado ya está registrado.');
