@@ -7,7 +7,7 @@ interface Patient {
   _id: number;
   name: string;
   email: string;
-  age: number;
+  birthdate: String;
   gender: 'M' | 'F' | 'otros';
   ethnicity: string;
   region: string;
@@ -43,6 +43,7 @@ const PatientListPage = () => {
     try {
       const response = await axios.get(`/api/help/helpInfo/${helpId}`);
       setSelectedPatient(response.data);
+      console.log(response.data);
     } catch (error) {
       console.log(error);
     }
@@ -77,6 +78,27 @@ const PatientListPage = () => {
     navigate('/MainMenu');
   };
 
+  function calcularEdad(fecha: String) {
+    console.log(fecha);
+    const fechaActual = new Date();
+    const partesFecha = fecha.split('-');
+    const diaNacimiento = parseInt(partesFecha[2], 10);
+    const mesNacimiento = parseInt(partesFecha[1], 10);
+    const anioNacimiento = parseInt(partesFecha[0], 10);
+
+    let edad = fechaActual.getFullYear() - anioNacimiento;
+
+    if (
+      fechaActual.getMonth() + 1 < mesNacimiento ||
+      (fechaActual.getMonth() + 1 === mesNacimiento && fechaActual.getDate() < diaNacimiento)
+    ) {
+      edad--;
+    }
+
+    return edad;
+  }
+
+
   return (
     <div className='container'>
       <h1>Listado de Pacientes que han solicitado ayuda</h1>
@@ -97,7 +119,7 @@ const PatientListPage = () => {
           <h2>Detalles del Paciente</h2>
           <p>Nombre: {selectedPatient.name}</p>
           <p>Email: {selectedPatient.email}</p>
-          <p>Edad: {selectedPatient.age}</p>
+          <p>Edad: {calcularEdad(selectedPatient.birthdate)}</p>
           <p>Género: {getGenderLabel(selectedPatient.gender)}</p>
           <p>Etnicidad: {selectedPatient.ethnicity}</p>
           <p>Región: {selectedPatient.region}</p>

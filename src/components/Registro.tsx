@@ -16,6 +16,7 @@ const RegistroPage: React.FC = () => {
   const [tipoInstitucion, setTipoInstitucion] = useState('');
   const [otroGenero, setOtroGenero] = useState('');
   const [otraEtnia, setOtraEtnia] = useState('');
+  const [fechaNacimiento, setFechaNacimiento] = useState('');
   const [error, setError] = useState('');
 
   const navigate = useNavigate();
@@ -32,7 +33,8 @@ const RegistroPage: React.FC = () => {
       etnia.trim() === '' ||
       region.trim() === '' ||
       nivelEducativo.trim() === '' ||
-      tipoInstitucion.trim() === ''
+      tipoInstitucion.trim() === '' ||
+      fechaNacimiento.trim() === ''
     ) {
       setError('Por favor, complete todos los campos.');
       return;
@@ -46,32 +48,36 @@ const RegistroPage: React.FC = () => {
     setError('');
 
     // Aquí puedes realizar las acciones necesarias con los datos del formulario
-    axios.post('/api/auth/signup',{
-      name : nombre,
-      email : email,
-      password : password,
-      gender : genero,
-      ethnicity : etnia,
-      region : region,
-      education : nivelEducativo,
-      institution : tipoInstitucion,
-      role : 'U'
-    }).then((response) => {
-      localStorage.setItem('email', email);
-      console.log(response.data);
-      if (response.status === 409) {
-        setError('El correo electrónico ingresado ya está registrado.');
+    axios
+      .post('/api/auth/signup', {
+        name: nombre,
+        email: email,
+        password: password,
+        birthdate: fechaNacimiento,
+        gender: genero,
+        ethnicity: etnia,
+        region: region,
+        education: nivelEducativo,
+        institution: tipoInstitucion,
+        dateOfBirth: fechaNacimiento,
+        role: 'U'
+      })
+      .then((response) => {
+        console.log(fechaNacimiento);
+        localStorage.setItem('email', email);
+        console.log(response.data);
+        if (response.status === 409) {
+          setError('El correo electrónico ingresado ya está registrado.');
+          console.log(error);
+          return;
+        }
+        setOpenDialog(true);
+      })
+      .catch((error) => {
+        alert('El correo electrónico ingresado ya está registrado. Intente iniciar sesión o pruebe con otro correo electrónico.');
+        setEmail('');
         console.log(error);
-        return;
-      }
-      setOpenDialog(true);
-    }
-    ).catch((error) => {
-      alert('El correo electrónico ingresado ya está registrado. Intente iniciar sesión o pruebe con otro correo electrónico.');
-      setEmail('');
-      console.log(error);
-    }
-    );
+      });
   };
 
   const handleCloseDialog = () => {
@@ -128,6 +134,15 @@ const RegistroPage: React.FC = () => {
             onChange={(e) => setPassword(e.target.value)}
           />
 
+          {/* New field for date of birth */}
+          <label htmlFor="fechaNacimiento">Fecha de Nacimiento:</label>
+          <input
+            type="date"
+            id="fechaNacimiento"
+            value={fechaNacimiento}
+            onChange={(e) => setFechaNacimiento(e.target.value)}
+          />
+
           <label htmlFor="genero">Género:</label>
           <select id="genero" value={genero} onChange={handleGeneroChange}>
             <option value="">Seleccionar</option>
@@ -178,61 +193,46 @@ const RegistroPage: React.FC = () => {
             onChange={(e) => setNivelEducativo(e.target.value)}
           >
             <option value="">Seleccionar</option>
-            <option value="10mo BGU">10mo BGU</option>
-            <option value="1ero bachillerato">1ero bachillerato</option>
-            <option value="2do de bachillerato">2do de bachillerato</option>
-            <option value="3ro de bachillerato">3ro de bachillerato</option>
+            <option value="Educación Básica">Educación Básica</option>
+            <option value="Educación Media">Educación Media</option>
+            <option value="Educación Superior">Educación Superior</option>
           </select>
 
-          <label htmlFor="tipoInstitucion">Tipo Institución:</label>
+          <label htmlFor="tipoInstitucion">Tipo de Institución:</label>
           <select
             id="tipoInstitucion"
             value={tipoInstitucion}
             onChange={(e) => setTipoInstitucion(e.target.value)}
           >
             <option value="">Seleccionar</option>
-            <option value="Privado">Privado</option>
-            <option value="Fiscomisional">Fiscomisional</option>
-            <option value="Municipal">Municipal</option>
+            <option value="Pública">Pública</option>
+            <option value="Privada">Privada</option>
           </select>
 
+          {error && <p className="error-message">{error}</p>}
 
+          <Button type="submit" variant="contained" color="primary">
+            Registrarse
+          </Button>
         </form>
-        <div className="disclaimer-container">
-            <p className="disclaimer-message">
-            Esta aplicación no sustituye la atención de un profesional de la salud mental. Para obtener
-            información más adecuada a su situación, le recomendamos consultar a un psicólogo en su
-            área.
-            </p>
-            <p className="terms-message">
-                Al hacer click en Registrar, acepta nuestros términos y condiciones.
-            </p>
-        </div>
-        <form onSubmit={handleSubmit}>
-            {/* ...contenido del formulario... */}
-            <button className="registro-button" type="submit">
-                Registrarse
-            </button>
-        </form>
-
-        {/* Cuadro de diálogo de registro exitoso */}
-        <Dialog open={openDialog} onClose={handleCloseDialog}>
-        <DialogTitle>¡Registro exitoso!</DialogTitle>
-            <DialogContent>
-                <DialogContentText>
-                El usuario ha sido registrado con éxito.
-                </DialogContentText>
-                <CheckCircleOutline color="primary" style={{ fontSize: 48, margin: '0 auto' }} />
-            </DialogContent>
-            <DialogActions>
-                <Button onClick={handleCloseDialog} color="primary">
-                Cerrar
-                </Button>
-            </DialogActions>
-        </Dialog>
-
-        {error && <p className="error-message">{error}</p>}
       </div>
+
+      <Dialog className='dialogRegistro' open={openDialog} onClose={handleCloseDialog}>
+        <DialogTitle>
+          Registro Exitoso
+        </DialogTitle>
+        <DialogContent className='registroMessage'>
+          <CheckCircleOutline fontSize="large" color="primary" />
+          <DialogContentText >
+            <br></br>¡Te has registrado exitosamente! <br></br> Ahora puedes comenzar a utilizar nuestra plataforma.
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions className='finalDialog'>
+          <Button onClick={handleCloseDialog} color="primary" autoFocus>
+            Continuar
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };

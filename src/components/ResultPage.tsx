@@ -47,7 +47,7 @@ const ResultPage: React.FC = () => {
   let submit = false;
 
   if (nivel === 3) {
-    mensajeAlto = '¡Felicidades! Tienes una autoestima elevada. Recuerd seguir así y no bajar la guardia. \n Mantén esos buenos hábitos.';
+    mensajeAlto = '¡Felicidades! Tienes una autoestima elevada. Recuerda seguir así y no bajar la guardia. \n Mantén esos buenos hábitos.';
   } else if (nivel === 2) {
     mensaje = 'Tienes una autoestima media.';
     recursosMedio = (
